@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "jonlf"
-version = 0.0.1
+name = "jsonlf"
+version = "0.0.1"
 description = "Pretty print a stream of json lines. You can pipe any command that is logging jsonl into this. If the line is not a json it will print as it is."
 authors = ["Matheus Fillipe <matheusfillipeag@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "jsonl_stream_formatter"}]
+packages = [{include = "jsonlf"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -17,3 +17,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 gstui = "jsonlf.main:main"
+
