@@ -1,3 +1,5 @@
+[![Pypi](https://badge.fury.io/py/jsonlf.svg)](https://pypi.org/project/jsonlf/)
+
 # jsonlf
 
 This is a json line formarter. It expects a valid json on stdin and outputs it pretty-printed and uses [pygments](https://pygments.org) for highlighting. It will also attempt to format python tracebacks.
