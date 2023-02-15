@@ -1,0 +1,48 @@
+name: "JSONLF deploy to pip"
+
+on:
+  push:
+
+env:
+  PYTHON_VERSION: "3.10"
+  POETRY_VERSION: 1.2.1
+  POETRY_URL: https://install.python-poetry.org
+
+jobs:
+  run-tests-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Poetry cache depends on OS, Python version and Poetry version.
+      - name: Cache Poetry cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry
+          key: poetry-cache-${{ runner.os }}-${{ env.PYTHON_VERSION }}-${{ env.POETRY_VERSION }}
+      # virtualenv cache should depends on OS, Python version and `poetry.lock` (and optionally workflow files).
+      - name: Cache Packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.local
+          key: poetry-${{ runner.os }}-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('.github/workflows/*.yml') }}
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Poetry
+        run: |
+          curl -sSL ${{ env.POETRY_URL }} | python - --version ${{ env.POETRY_VERSION }}
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Install dependencies
+        run: |
+          poetry install
+      - name: Deploy to PyPI
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: JRubics/poetry-publish@v1.13
+        with:
+          user: mattfly
+          pypi_token: ${{ secrets.PYPI_TOKEN }}

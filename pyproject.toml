@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "jsonl-stream-formatter"
+version = "0.1.0"
+description = "Pretty print a stream of json lines. You can pipe any command that is logging jsonl into this. If the line is not a json it will print as it is."
+authors = ["Matheus Fillipe <matheusfillipeag@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "jsonl_stream_formatter"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Pygments = "^2.14.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+gstui = "jsonlf.main:main"
