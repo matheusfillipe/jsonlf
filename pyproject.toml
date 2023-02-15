@@ -16,5 +16,5 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-jsonfl = "jsonlf.main:main"
+jsonlf = "jsonlf.main:main"
 
