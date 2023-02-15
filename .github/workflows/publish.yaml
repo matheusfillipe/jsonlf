@@ -40,6 +40,13 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install
+
+      - name: Version bump
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          RELEASE_VERSION: ${{ github.ref_name}}
+        run: |
+          version=${RELEASE_VERSION/v/} sed "s/^version =.*/version = \"$version\"/g" -i pyproject.toml
       - name: Deploy to PyPI
         if: startsWith(github.ref, 'refs/tags/v')
         uses: JRubics/poetry-publish@v1.13

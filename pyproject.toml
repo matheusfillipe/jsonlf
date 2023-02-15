@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "jsonl-stream-formatter"
-version = "0.1.0"
+name = "jonlf"
+version = 0.0.1
 description = "Pretty print a stream of json lines. You can pipe any command that is logging jsonl into this. If the line is not a json it will print as it is."
 authors = ["Matheus Fillipe <matheusfillipeag@gmail.com>"]
 license = "MIT"
