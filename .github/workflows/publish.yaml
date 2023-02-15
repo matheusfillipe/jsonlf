@@ -5,11 +5,11 @@ on:
 
 env:
   PYTHON_VERSION: "3.10"
-  POETRY_VERSION: 1.2.1
+  POETRY_VERSION: 1.3.2
   POETRY_URL: https://install.python-poetry.org
 
 jobs:
-  run-tests-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     defaults:
       run:
