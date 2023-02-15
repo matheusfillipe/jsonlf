@@ -48,6 +48,7 @@ def readall(style=None):
             is_traceback = True
             line = traceback_highlight()
 
+        line = line.replace("\\n", "\n")
         print(line, end="")
 
 
